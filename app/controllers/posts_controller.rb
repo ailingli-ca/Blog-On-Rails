@@ -14,6 +14,7 @@ class PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       render :new
+      flash[:notice]= "Body must have more than 50 characters"
     end
   end
 
@@ -22,7 +23,9 @@ class PostsController < ApplicationController
     @posts = Post.order(created_at: :desc)
   end
 
-  def show 
+  def show
+    @comments = @post.comments.order(created_at: :desc)
+    @comment = Comment.new
   end
 
   # ===============EDIT==========================

@@ -12,20 +12,30 @@
 
   <body>
       <header>
-      <nav class="navbar">
-        <div class="brand"> 
-          <%= link_to 'Blog On Rails', root_path %>
+      <nav class="navbar navbar-light bg-light">
+        <div class="nav-container"> 
+          <a class="text-primary navbar-brand" href="<%= root_path %>" style="margin-left: 1em">Blog on Rails</a>
         </div>
-        <ul class="menu">
-          <li>
-            <%= link_to 'Home', root_path %>
-          </li>
-          <li>
-            <%= link_to 'New Post', new_post_path %>
-          </li>
-        </ul>
-      </nav> 
+        <div class="nav-items-set justify-content-end">
+          <ul class="nav">
+
+            <li class="nav-item active">
+              <a class="text-primary nav-link" href="<%= root_path %>">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="text-primary nav-link" href="<%= new_post_path %>">New Post</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header> 
+    <div>
+      <% flash.each do |type, message| %>
+        <div class="alert alert-info" role="alert">
+          <%= type + "------" + message %>
+        </div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
