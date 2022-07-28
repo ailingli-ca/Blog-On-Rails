@@ -2,7 +2,9 @@
   <h1><%= @post.title %></h1>
   <p><%= @post.body %></p>
 
-  <p><small>Posted <%= time_ago_in_words(@post.created_at) %> ago</small></p>
+  <p><small>Posted <%= time_ago_in_words(@post.created_at) %> ago</small> | 
+  <small>Created by: <%= @post.user.name %></small></p>
+
   <div class="btn-toolbar mt-2" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group me-2" role="group">
       <%= button_to 'Edit', edit_post_path(@post), method: :get, class:"btn btn-outline-primary mb-3" %>
@@ -31,7 +33,7 @@
       <% @comments.each do |comment| %>
           <div><%= comment.body %>
           <div class="d-flex mb-1">
-          <small class="d-flex align-items-center">Commented <%= time_ago_in_words(comment.created_at) %> ago <span class="dot mx-1"> • </span></small>
+          <small class="d-flex align-items-center">Commented <%= time_ago_in_words(comment.created_at) %> ago by: <label><%= comment.user.name %></label><span class="dot mx-1"> • </span></small>
           <%= button_to "Delete", post_comment_path(@post, comment), method: :delete,form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn btn-link my-1 p-0 border-0 text-decoration-none", style:"font-size: 14px;" %>
           </div>
           </div>

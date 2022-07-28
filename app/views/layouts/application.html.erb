@@ -12,6 +12,8 @@
 
   <body>
       <header>
+      <nav>
+      </nav>
       <nav class="navbar navbar-light bg-light">
         <div class="nav-container"> 
           <a class="text-primary navbar-brand" href="<%= root_path %>" style="margin-left: 1em">Blog on Rails</a>
@@ -25,6 +27,22 @@
             <li class="nav-item">
               <a class="text-primary nav-link" href="<%= new_post_path %>">New Post</a>
             </li>
+
+            <% if(user_signed_in?) %>
+              <li class="nav-item">
+                <a class="nav-link"><%= current_user.name %> </a>
+              </li>
+              <li class="nav-item">
+                <div><%= button_to "Log out", session_path, method: :delete, class: "btn btn-danger" %></div>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= new_session_path %>">Sign In</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= new_user_path %>">Sign Up</a>
+              </li>
+            <% end %>
           </ul>
         </div>
       </nav>
