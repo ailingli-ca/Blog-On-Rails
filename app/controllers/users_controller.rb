@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    before_action :find_user, only: [:edit, :update]
-    before_action :authenticate_user!, only: [:edit, :update]
+    before_action :find_user, only: [:edit, :update, :edit_password, :update_password]
+    before_action :authenticate_user!, only: [:edit, :update, :edit_password, :update_password]
 
     def new
         @user = User.new
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
         end
     end
 
-      # ===============EDIT==========================
+    # ===============EDIT==========================
     def edit
     end
 
@@ -33,7 +33,33 @@ class UsersController < ApplicationController
         render :edit, status: 303
         end
     end
+    # ===============EDIT PASSWORD==========================
+    def edit_password
+    end
 
+    def update_password
+        if params[:new_password] != params[:current_password]
+            if params[:new_password] == params[:new_password_confirmation]
+              if @user&.authenticate params[:current_password]
+                if @user&.update password: params[:new_password], password_confirmation: params[:new_password_confirmation]
+                  redirect_to root_path, { status: 303, notice: 'Password updated successfully' }
+                else
+                  flash.now[:alert] = @user.errors.full_messages.join(', ')
+                  render :edit_password, status: 303
+                end
+              else
+                flash.now[:alert] = 'Current password wrong'
+                render :edit_password, status: 303
+              end
+            else
+              flash.now[:alert] = 'New password does not match'
+              render :edit_password, status: 303
+            end
+        else
+            flash.now[:alert] = 'New password cannot be the same as your current password'
+            render :edit_password, status: 303
+        end
+    end
 
     private
 

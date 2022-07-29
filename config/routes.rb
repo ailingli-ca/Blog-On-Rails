@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   resource :session, only:[:new, :create, :destroy]
 
+  get '/password', to: 'users#edit_password', as: :edit_password
+  post '/password', to: 'users#update_password', as: :update_password
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
