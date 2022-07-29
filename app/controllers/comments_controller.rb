@@ -16,8 +16,12 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment = Comment.find(params[:id])
-        @comment.destroy
-        redirect_to post_path(@post), notice: "Comment deleted successfully!"
+        if can?(:crud, @comment)
+          @comment.destroy
+          redirect_to post_path(@post), notice: "Comment deleted successfully!"
+        else
+          redirect_to root_path, alert: "Not authorized" 
+        end
     end
 
     private
