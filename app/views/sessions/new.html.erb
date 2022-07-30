@@ -1,11 +1,13 @@
-<%= form_with url: session_path do |form| %>
-  <div>
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-  <div>
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-  <%= form.submit "Sign In" %>
-<% end %>
+<div class="m-3">
+  <%= form_with url: session_path do |form| %>
+    <div>
+      <%= form.label :email %>
+      <%= form.text_field :email, class: "form-control" %>
+    </div>
+    <div>
+      <%= form.label :password %>
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+    <%= form.submit "Sign In", class: "btn btn-outline-primary my-3" %>
+  <% end %>
+</div>

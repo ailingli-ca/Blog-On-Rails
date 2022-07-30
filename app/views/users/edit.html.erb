@@ -1,19 +1,21 @@
-<h1>Your Account Details</h1>
+<div class="m-3">
+    <h1>Your Account Details</h1>
 
-<% if @user.errors.any? %>
-  <p><%= @user.errors.full_messages.join(', ') %> </p>
-<% end %>
+    <% if @user.errors.any? %>
+    <p><%= @user.errors.full_messages.join(', ') %> </p>
+    <% end %>
 
-<%= form_with model: @user do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-  <%= f.submit "Update Profile" %>
-<% end %>
+    <%= form_with model: @user do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control my-1" %>
+    </div>
+    <div>
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "form-control my-1" %>
+    </div>
+    <%= f.submit "Update Profile", class:"btn btn-outline-primary px-4 my-3" %>
+    <% end %>
 
-<%= button_to 'Change Password', edit_password_path, method: :get, class:"btn btn-outline-primary mb-3" %>
+    <%= button_to 'Change Password', edit_password_path, method: :get, class:"btn btn-outline-primary mb-3" %>
+<div class="m-3">

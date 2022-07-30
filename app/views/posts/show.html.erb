@@ -35,8 +35,9 @@
       <% @comments.each do |comment| %>
           <div><%= comment.body %>
           <div class="d-flex mb-1">
-          <small class="d-flex align-items-center">Commented <%= time_ago_in_words(comment.created_at) %> ago by: <label><%= comment.user.name %></label><span class="dot mx-1"> • </span></small>
+          <small class="d-flex align-items-center">Commented <%= time_ago_in_words(comment.created_at) %> ago by: <label><%= comment.user.name %></label></small>
           <% if can? :crud, comment %>
+            <span class="dot mx-1"> • </span>
             <%= button_to "Delete", post_comment_path(@post, comment), method: :delete,form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn btn-link my-1 p-0 border-0 text-decoration-none", style:"font-size: 14px;" %>
           <% end %>
           </div>
