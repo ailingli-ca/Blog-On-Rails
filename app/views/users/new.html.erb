@@ -1,0 +1,28 @@
+<div class="m-3">
+  <h1>Sign Up</h1>
+
+  <% if @user.errors.any? %>
+    <p><%= @user.errors.full_messages.join(', ') %> </p>
+  <% end %>
+
+
+  <%= form_with model: @user do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control", required: :required %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email, class: "form-control", required: :required %>
+    </div>
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control", required: :required %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "form-control", required: :required %>
+    </div>
+    <%= f.submit "Sign up", class: "btn btn-outline-primary my-2" %>
+  <% end %>
+</div>

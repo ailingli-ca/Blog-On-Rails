@@ -1,0 +1,17 @@
+@media (min-width: 576px) {
+    .card {
+      grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 768px) {
+    .card {
+      grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 992px) {
+    .card {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+}

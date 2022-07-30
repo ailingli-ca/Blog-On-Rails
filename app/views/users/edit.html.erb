@@ -1,0 +1,21 @@
+<div class="m-3">
+    <h1>Your Account Details</h1>
+
+    <% if @user.errors.any? %>
+        <p><%= @user.errors.full_messages.join(', ') %> </p>
+    <% end %>
+
+    <%= form_with model: @user do |f| %>
+        <div>
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control my-1", required: :required %>
+        </div>
+        <div>
+            <%= f.label :email %>
+            <%= f.text_field :email, class: "form-control my-1", required: :required %>
+        </div>
+        <%= f.submit "Update Profile", class:"btn btn-outline-primary px-4 my-3" %>
+    <% end %>
+
+    <%= button_to 'Change Password', edit_password_path, method: :get, class:"btn btn-outline-primary mb-3" %>
+</div>
